@@ -1,20 +1,35 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Eu te amo</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eu te amo 💖</title>
+  <link rel="stylesheet" href="amor-styles.css">
 </head>
 <body>
-    <div class="hearts-layer"></div>
-    
-    <div class="card">
-        <h1>Eu Te Amo ❤️</h1>
-        <p class="lead">Você é especial demais para mim</p>
-        <p class="small">Para sempre e sempre...</p>
-    </div>
+  <div class="wrap">
+    <div class="hearts" id="hearts"></div>
 
-    <script src="script.js"></script>
+    <article class="card" role="dialog" aria-label="Declaração de amor">
+      <div class="ribbon">feito com ❤️ em HTML • CSS • JS</div>
+      <div class="big-heart" aria-hidden="true"></div>
+
+      <h1 class="title">Eu te amo</h1>
+      <p class="subtitle">e obrigado por tudo ✨</p>
+
+      <p id="typed" class="type" aria-live="polite"></p>
+
+      <button class="cta" id="btn">Clique para um momento fofo</button>
+      <p class="note">ps: com isso que trabalho mais ou menos… kkk 😅</p>
+    </article>
+  </div>
+
+  <div class="confetti" id="confetti"></div>
+
+  <footer>
+    Feito para você — <a href="#" onclick="replay()">repetir animação</a>
+  </footer>
+
+  <script src="amor-script.js"></script>
 </body>
 </html>

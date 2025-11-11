@@ -103,19 +103,10 @@ body{
 /* Confetti */
 .confetti{position:fixed; inset:0; pointer-events:none; overflow:hidden;}
 
-.confetti-piece{
-  position:absolute;
-  width:10px; height:10px;
-  background:#ffd166;
-  pointer-events:none;
-  animation: confetti-fall linear forwards;
-}
+.piece{position:absolute; width:10px; height:16px; background:var(--accent); opacity:.95; will-change:transform, opacity;}
 
-@keyframes confetti-fall{
-  to{
-    transform: translateY(100vh) rotateZ(720deg);
-    opacity:0;
-  }
-}
+footer{position:fixed; bottom:12px; width:100%; text-align:center; font-size:.85rem; opacity:.75}
 
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+a{color:#fff; opacity:.9}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap');
