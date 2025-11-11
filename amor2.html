@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eu te amo 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0f0c29;/* deep */
+      --bg2:#302b63;/* dusk */
+      --bg3:#24243e;/* night */
+      --accent:#ff4d6d;
+      --accent-2:#ffd166;
+      --glass: rgba(255,255,255,.08);
+      --glass-2: rgba(255,255,255,.15);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 80% -10%, #41295a00 40%, #ff4d6d22 70%, #ff4d6d00 75%),
+                 linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+      color:#fff;
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      overflow:hidden;
+    }
+    .wrap{position:relative; height:100%; width:100%; display:grid; place-items:center;}
+
+    /* Floating hearts in the background */
+    .hearts{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
+    .heart{
+      position:absolute; left:var(--x,50%); bottom:-60px; width:28px; aspect-ratio:1;
+      transform:translateX(-50%) scale(var(--s,1)) rotate(45deg);
+      background:var(--accent);
+      box-shadow: 0 10px 30px #ff4d6d55;
+      clip-path: polygon(50% 0%, 61% 3%, 71% 9%, 78% 18%, 82% 30%, 83% 43%, 82% 57%, 79% 71%, 74% 84%, 67% 95%, 58% 100%, 50% 100%, 42% 100%, 33% 95%, 26% 84%, 21% 71%, 18% 57%, 17% 43%, 18% 30%, 22% 18%, 29% 9%, 39% 3%);
+      opacity:.9;
+      animation: floatUp linear var(--t,9s) forwards;
+    }
+    @keyframes floatUp{
+      0%{transform:translateX(-50%) translateY(0) scale(var(--s,1)) rotate(45deg); opacity:.0}
+      10%{opacity:.85}
+      100%{transform:translateX(-50%) translateY(-110vh) scale(var(--s,1.1)) rotate(45deg); opacity:0}
+    }
+
+    /* Card */
+    .card{
+      position:relative;
+      width:min(680px, 92vw);
+      border-radius:28px;
+      padding:36px 28px 24px;
+      background:linear-gradient(180deg,var(--glass-2),var(--glass));
+      backdrop-filter: blur(10px) saturate(130%);
+      box-shadow: 0 20px 60px #0006, inset 0 1px 0 #fff2;
+      text-align:center;
+    }
+    .ribbon{
+      position:absolute; top:16px; right:18px; font-size:.85rem; letter-spacing:.06em; opacity:.8;
+      background:#ffffff1a; padding:6px 12px; border-radius:999px; border:1px solid #ffffff33;
+    }
+    .title{font-family:"Great Vibes", cursive; font-size:clamp(40px, 9vw, 72px); line-height:1; margin:0 0 8px; text-shadow:0 2px 12px #0007}
+    .subtitle{font-size:clamp(16px, 2.8vw, 20px); opacity:.9; margin:0 0 18px}
+
+    .type{
+      font-weight:600; font-size:clamp(18px, 3.8vw, 26px); margin:18px 0 12px;
+      min-height: 1.6em;
+      letter-spacing:.02em;
+    }
+
+    .cta{
+      display:inline-flex; align-items:center; gap:10px; margin-top:8px;
+      padding:12px 18px; border-radius:999px; cursor:pointer; user-select:none;
+      border:1px solid #ffffff3d; background:#ffffff14;
+      transition:.2s ease; font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:.9rem;
+    }
+    .cta:hover{transform:translateY(-1px); background:#ffffff1f}
+    .cta:active{transform:translateY(0);}
+
+    /* Pulsing heart badge */
+    .big-heart{
+      width:84px; aspect-ratio:1; margin:10px auto 6px; position:relative;
+      filter: drop-shadow(0 10px 30px #ff4d6d55);
+      animation: thump 1.6s ease-in-out infinite;
+    }
+    .big-heart::before, .big-heart::after{
+      content:""; position:absolute; inset:0; border-radius:18px; transform:rotate(45deg);
+      background:radial-gradient(circle at 30% 30%, #fff8, transparent 55%), var(--accent);
+    }
+    .big-heart::after{ inset:10%; background:radial-gradient(circle at 30% 30%, #fff5, transparent 45%), #ff758f; filter:blur(8px); opacity:.6 }
+    @keyframes thump{0%,100%{transform:scale(1)} 30%{transform:scale(1.06)} 60%{transform:scale(0.98)} }
+
+    .note{
+      margin-top:14px; font-size:.95rem; opacity:.9;
+    }
+
+    /* Confetti */
+    .confetti{position:fixed; inset:0; pointer-events:none; overflow:hidden;}
+    .piece{position:absolute; width:10px; height:16px; background:var(--accent); opacity:.95; will-change:transform, opacity;}
+
+    footer{position:fixed; bottom:12px; width:100%; text-align:center; font-size:.85rem; opacity:.75}
+    a{color:#fff; opacity:.9}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hearts" id="hearts"></div>
+
+    <article class="card" role="dialog" aria-label="Declaração de amor">
+      <div class="ribbon">feito com ❤️ em HTML • CSS • JS</div>
+      <div class="big-heart" aria-hidden="true"></div>
+
+      <h1 class="title">Eu te amo</h1>
+      <p class="subtitle">e obrigado por tudo ✨</p>
+
+      <p id="typed" class="type" aria-live="polite"></p>
+
+      <button class="cta" id="btn">Clique para um momento fofo</button>
+      <p class="note">ps: com isso que trabalho mais ou menos… kkk 😅</p>
+    </article>
+  </div>
+
+  <div class="confetti" id="confetti"></div>
+
+  <footer>
+    Feito para você — <a href="#" onclick="replay()">repetir animação</a>
+  </footer>
+
+  <script>
+    // --- Floating background hearts ---
+    const hearts = document.getElementById('hearts');
+    function spawnHeart(){
+      const h = document.createElement('span');
+      h.className = 'heart';
+      h.style.setProperty('--x', Math.random()*100 + '%');
+      h.style.setProperty('--s', (Math.random()*0.8 + 0.6).toFixed(2));
+      h.style.setProperty('--t', (Math.random()*6 + 6).toFixed(2) + 's');
+      hearts.appendChild(h);
+      setTimeout(()=> h.remove(), 12000);
+    }
+    for (let i=0;i<14;i++) setTimeout(spawnHeart, i*350);
+    setInterval(spawnHeart, 1200);
+
+    // --- Cute typing line ---
+    const line = 'Prometo te amar, te cuidar e te agradecer todos os dias.';
+    const typed = document.getElementById('typed');
+    let i = 0;
+    function type(){
+      if(i <= line.length){
+        typed.textContent = line.slice(0, i++);
+        setTimeout(type, 30 + Math.random()*60);
+      }else{
+        typed.insertAdjacentHTML('beforeend', '<span style="opacity:.8"> ▏</span>');
+      }
+    }
+    setTimeout(type, 800);
+
+    // --- Confetti burst ---
+    const confetti = document.getElementById('confetti');
+    function boom(x = innerWidth/2, y = innerHeight/2){
+      const n = 120;
+      for(let k=0;k<n;k++){
+        const p = document.createElement('span');
+        p.className = 'piece';
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+        p.style.background = `hsl(${Math.random()*360}, 90%, 60%)`;
+        const dx = (Math.random()*2-1) * 9; // x velocity
+        const dy = (Math.random()*-1) * (8 + Math.random()*6); // y velocity up
+        const rot = (Math.random()*720-360);
+        const life = 120 + Math.random()*60;
+        p.animate([
+          {transform:`translate(0,0) rotate(0deg)`, opacity:1},
+          {transform:`translate(${dx*life}px, ${dy*life}px) rotate(${rot}deg)`, opacity:0}
+        ], {duration: 900 + Math.random()*600, easing:'cubic-bezier(.12,.68,.28,1)'});
+        setTimeout(()=>p.remove(), 1600);
+        confetti.appendChild(p);
+      }
+    }
+
+    // Button interactions
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', e => {
+      const r = btn.getBoundingClientRect();
+      boom(r.left + r.width/2, r.top + r.height/2);
+      pulseCard();
+    });
+
+    // Replay link
+    function replay(){
+      typed.textContent = '';
+      i = 0; type();
+      boom();
+    }
+
+    // Small card pulse effect
+    function pulseCard(){
+      const card = document.querySelector('.card');
+      card.animate([
+        {transform:'scale(1)'},
+        {transform:'scale(1.03)'},
+        {transform:'scale(1)'}
+      ], {duration:500, easing:'ease-out'});
+    }
+
+    // Allow click anywhere to confetti
+    window.addEventListener('click', (e)=>{
+      if(!e.target.closest('.cta')) boom(e.clientX, e.clientY);
+    });
+  </script>
+</body>
+</html>
