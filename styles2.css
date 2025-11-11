@@ -1,0 +1,121 @@
+:root{
+  --bg1:#0f0c29;/* deep */
+  --bg2:#302b63;/* dusk */
+  --bg3:#24243e;/* night */
+  --accent:#ff4d6d;
+  --accent-2:#ffd166;
+  --glass: rgba(255,255,255,.08);
+  --glass-2: rgba(255,255,255,.15);
+}
+
+*{box-sizing:border-box}
+
+html,body{height:100%;}
+
+body{
+  margin:0;
+  background: radial-gradient(1200px 800px at 80% -10%, #41295a00 40%, #ff4d6d22 70%, #ff4d6d00 75%),
+             linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+  color:#fff;
+  font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+  overflow:hidden;
+}
+
+.wrap{position:relative; height:100%; width:100%; display:grid; place-items:center;}
+
+/* Floating hearts in the background */
+.hearts{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
+
+.heart{
+  position:absolute; left:var(--x,50%); bottom:-60px; width:28px; aspect-ratio:1;
+  transform:translateX(-50%) scale(var(--s,1)) rotate(45deg);
+  background:var(--accent);
+  box-shadow: 0 10px 30px #ff4d6d55;
+  clip-path: polygon(50% 0%, 61% 3%, 71% 9%, 78% 18%, 82% 30%, 83% 43%, 82% 57%, 79% 71%, 74% 84%, 67% 95%, 58% 100%, 50% 100%, 42% 100%, 33% 95%, 26% 84%, 21% 71%, 18% 57%, 17% 43%, 18% 30%, 22% 18%, 29% 9%, 39% 3%);
+  opacity:.9;
+  animation: floatUp linear var(--t,9s) forwards;
+}
+
+@keyframes floatUp{
+  0%{transform:translateX(-50%) translateY(0) scale(var(--s,1)) rotate(45deg); opacity:.0}
+  10%{opacity:.85}
+  100%{transform:translateX(-50%) translateY(-110vh) scale(var(--s,1.1)) rotate(45deg); opacity:0}
+}
+
+/* Card */
+.card{
+  position:relative;
+  width:min(680px, 92vw);
+  border-radius:28px;
+  padding:36px 28px 24px;
+  background:linear-gradient(180deg,var(--glass-2),var(--glass));
+  backdrop-filter: blur(10px) saturate(130%);
+  box-shadow: 0 20px 60px #0006, inset 0 1px 0 #fff2;
+  text-align:center;
+}
+
+.ribbon{
+  position:absolute; top:16px; right:18px; font-size:.85rem; letter-spacing:.06em; opacity:.8;
+  background:#ffffff1a; padding:6px 12px; border-radius:999px; border:1px solid #ffffff33;
+}
+
+.title{font-family:"Great Vibes", cursive; font-size:clamp(40px, 9vw, 72px); line-height:1; margin:0 0 8px; text-shadow:0 2px 12px #0007}
+
+.subtitle{font-size:clamp(16px, 2.8vw, 20px); opacity:.9; margin:0 0 18px}
+
+.type{
+  font-weight:600; font-size:clamp(18px, 3.8vw, 26px); margin:18px 0 12px;
+  min-height: 1.6em;
+  letter-spacing:.02em;
+}
+
+.cta{
+  display:inline-flex; align-items:center; gap:10px; margin-top:8px;
+  padding:12px 18px; border-radius:999px; cursor:pointer; user-select:none;
+  border:1px solid #ffffff3d; background:#ffffff14;
+  transition:.2s ease; font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:.9rem;
+}
+
+.cta:hover{transform:translateY(-1px); background:#ffffff1f}
+
+.cta:active{transform:translateY(0);}
+
+/* Pulsing heart badge */
+.big-heart{
+  width:84px; aspect-ratio:1; margin:10px auto 6px; position:relative;
+  filter: drop-shadow(0 10px 30px #ff4d6d55);
+  animation: thump 1.6s ease-in-out infinite;
+}
+
+.big-heart::before, .big-heart::after{
+  content:""; position:absolute; inset:0; border-radius:18px; transform:rotate(45deg);
+  background:radial-gradient(circle at 30% 30%, #fff8, transparent 55%), var(--accent);
+}
+
+.big-heart::after{ inset:10%; background:radial-gradient(circle at 30% 30%, #fff5, transparent 45%), #ff758f; filter:blur(8px); opacity:.6 }
+
+@keyframes thump{0%,100%{transform:scale(1)} 30%{transform:scale(1.06)} 60%{transform:scale(0.98)} }
+
+.note{
+  margin-top:14px; font-size:.95rem; opacity:.9;
+}
+
+/* Confetti */
+.confetti{position:fixed; inset:0; pointer-events:none; overflow:hidden;}
+
+.confetti-piece{
+  position:absolute;
+  width:10px; height:10px;
+  background:#ffd166;
+  pointer-events:none;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall{
+  to{
+    transform: translateY(100vh) rotateZ(720deg);
+    opacity:0;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
